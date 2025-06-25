@@ -20,7 +20,7 @@
     "build:watch": "tsup --watch",
     "dev": "bun run build:watch",
     "pub:release": "bun run build && npm publish",
-    "prepare": "bun run build"
+    "postinstall": "bun run build"
   },
   "devDependencies": {
     "@types/bun": "latest",
