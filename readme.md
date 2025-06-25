@@ -1,8 +1,29 @@
+# Talk to Figma MCP
+by https://github.com/sonnylazuardi/cursor-talk-to-figma-mcp
+
+# 사용 방법
+## 1. Bun 설치
+- [리눅스](#get-started) 
+- [윈도우](#windows--wsl-guide)
+
+## 2. MCP 등록
+   
+npm repository에 등록이 되어있지 않으므로 실제로 프로젝트를 실행하도록 설정해야 한다.
+
+```bash
+"TalkToFigma": {
+    "command": "cmd", 
+    "args": ["/c", "npm", "--silent", "-C", "C:/cursor-talk-to-figma-mcp", "start"]
+    }
+```
+
+# 수정 사항
+- 로컬 컴포넌트도 생성 가능하도록 수정
+- 컴포넌트 생성 시 상위 요소에 생성될 수 있도록 수정
+
+원본
+---
 # Cursor Talk to Figma MCP
-
-This project implements a Model Context Protocol (MCP) integration between Cursor AI and Figma, allowing Cursor to communicate with Figma for reading designs and modifying them programmatically.
-
-https://github.com/user-attachments/assets/129a14d2-ed73-470f-9a4c-2240b2a4885c
 
 ## Project Structure
 
