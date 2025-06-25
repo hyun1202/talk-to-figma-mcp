@@ -1160,20 +1160,43 @@ async function getLocalComponents() {
 // }
 
 async function createComponentInstance(params) {
-  const { componentKey, x = 0, y = 0 } = params || {};
+  const { componentKey, x = 0, y = 0, parentId } = params || {};
 
   if (!componentKey) {
     throw new Error("Missing componentKey parameter");
   }
 
   try {
-    const component = await figma.importComponentByKeyAsync(componentKey);
+    let component;
+    try {
+      component = await figma.importComponentByKeyAsync(componentKey);
+    } catch (error) {
+      console.log("failed searching by team component.. find local component..");
+      await figma.loadAllPagesAsync();
+      const components = figma.root.findAllWithCriteria({
+        types: ["COMPONENT"],
+      });
+      component = components.filter((c) => c.key === componentKey)[0];
+    }
+
     const instance = component.createInstance();
 
     instance.x = x;
     instance.y = y;
 
-    figma.currentPage.appendChild(instance);
+      // If parentId is provided, append to that node, otherwise append to current page
+    if (parentId) {
+      const parentNode = await figma.getNodeByIdAsync(parentId);
+      if (!parentNode) {
+        throw new Error(`Parent node not found with ID: ${parentId}`);
+      }
+      if (!("appendChild" in parentNode)) {
+        throw new Error(`Parent node does not support children: ${parentId}`);
+      }
+      parentNode.appendChild(instance);
+    } else {
+      figma.currentPage.appendChild(instance);
+    }
 
     return {
       id: instance.id,
@@ -1183,6 +1206,7 @@ async function createComponentInstance(params) {
       width: instance.width,
       height: instance.height,
       componentId: instance.componentId,
+      parentId: parentId,
     };
   } catch (error) {
     throw new Error(`Error creating component instance: ${error.message}`);

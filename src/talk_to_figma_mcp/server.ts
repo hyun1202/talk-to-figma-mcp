@@ -1208,13 +1208,15 @@ server.tool(
     componentKey: z.string().describe("Key of the component to instantiate"),
     x: z.number().describe("X position"),
     y: z.number().describe("Y position"),
+    parentId: z.string().describe("parentId"),
   },
-  async ({ componentKey, x, y }) => {
+  async ({ componentKey, x, y, parentId }) => {
     try {
       const result = await sendCommandToFigma("create_component_instance", {
         componentKey,
         x,
         y,
+        parentId
       });
       const typedResult = result as any;
       return {
