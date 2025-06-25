@@ -1,11 +1,11 @@
 {
-  "name": "cursor-talk-to-figma-mcp",
-  "description": "Cursor Talk to Figma MCP",
-  "version": "0.2.1",
+  "name": "talk-to-figma-mcp",
+  "description": "Talk to Figma MCP",
+  "version": "0.2.2",
   "module": "dist/server.js",
   "main": "dist/server.js",
   "bin": {
-    "cursor-talk-to-figma-mcp": "dist/server.js"
+    "talk-to-figma-mcp": "dist/server.js"
   },
   "files": [
     "dist",
@@ -19,7 +19,8 @@
     "build": "tsup",
     "build:watch": "tsup --watch",
     "dev": "bun run build:watch",
-    "pub:release": "bun run build && npm publish"
+    "pub:release": "bun run build && npm publish",
+    "prepare": "bun run build"
   },
   "devDependencies": {
     "@types/bun": "latest",

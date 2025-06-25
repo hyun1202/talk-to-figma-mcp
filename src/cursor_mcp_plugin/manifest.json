@@ -1,6 +1,6 @@
 {
-  "name": "Cursor MCP Plugin",
-  "id": "cursor-mcp-plugin",
+  "name": "Figma MCP Plugin",
+  "id": "Figma-mcp-plugin",
   "api": "1.0.0",
   "main": "code.js",
   "ui": "ui.html",
