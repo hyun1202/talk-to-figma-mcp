@@ -7,14 +7,24 @@ by https://github.com/sonnylazuardi/cursor-talk-to-figma-mcp
 - [윈도우](#windows--wsl-guide)
 
 ## 2. MCP 등록
-   
+
+### 2.1 bun을 이용하여 저장소에서 실행
+```bash
+"TalkToFigma": {
+      "command": "bunx",
+      "args": ["hyun1202/talk-to-figma-mcp#dist"]
+}
+```   
+
+### 2.2 직접 실행  
 npm repository에 등록이 되어있지 않으므로 실제로 프로젝트를 실행하도록 설정해야 한다.
 
+>window 기준
 ```bash
 "TalkToFigma": {
     "command": "cmd", 
     "args": ["/c", "npm", "--silent", "-C", "C:/cursor-talk-to-figma-mcp", "start"]
-    }
+}
 ```
 
 # 수정 사항
